@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiRetrofit {
 
-    val baseUrl = "http://192.168.88.47:8080/restapi/"
+    val baseUrl = "http://192.168.100.15:8080/restapi/"
     val endpoint : ApiEndPoint
 
     get() {

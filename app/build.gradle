@@ -52,4 +52,7 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 }
