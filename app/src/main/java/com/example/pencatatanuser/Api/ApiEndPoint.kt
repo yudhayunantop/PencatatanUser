@@ -7,25 +7,25 @@ import retrofit2.http.*
 
 interface ApiEndPoint {
 
-    @GET("user/")
+    @GET("restapi/user/")
     fun user() : Call<UserModel>
 
     @FormUrlEncoded
-    @POST("user/")
+    @POST("restapi/user/")
     fun create(
         @Field("username") username: String,
         @Field("password") password: String
     ) : Call<SubmitModel>
 
     @FormUrlEncoded
-    @POST("user/{idpengguna}")
+    @POST("restapi/user/{idpengguna}")
     fun update(
         @Path("idpengguna") idpengguna: Int,
         @Field("username") username: String,
         @Field("password") password: String
     ) : Call<SubmitModel>
 
-    @DELETE("user/{idpengguna}")
+    @DELETE("restapi/user/{idpengguna}")
     fun delete(
         @Path("idpengguna") idpengguna: Int
     ) : Call<SubmitModel>

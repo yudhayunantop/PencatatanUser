@@ -1,5 +1,6 @@
 package com.example.pencatatanuser.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.example.pencatatanuser.Api.ApiRetrofit
 import com.example.pencatatanuser.R
 import com.example.pencatatanuser.Model.SubmitModel
 import com.example.pencatatanuser.Model.UserModel
+import com.example.pencatatanuser.Activity.ScanQRCodeActivity
 import com.google.android.material.button.MaterialButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +23,7 @@ class CreateActivity : AppCompatActivity() {
     private lateinit var createUsername: AutoCompleteTextView
     private lateinit var createPassword:  EditText
     private lateinit var buttonCreate: MaterialButton
+    private lateinit var buttonCreateQR: MaterialButton
 
     private val api by lazy { ApiRetrofit().endpoint}
 
@@ -37,9 +40,14 @@ class CreateActivity : AppCompatActivity() {
         createUsername = findViewById(R.id.create_username)
         createPassword = findViewById(R.id.create_password)
         buttonCreate = findViewById(R.id.button_create)
+        buttonCreateQR = findViewById(R.id.button_createqr)
     }
 
     private fun setupListener(){
+        buttonCreateQR.setOnClickListener {
+            startActivity(Intent(this, ScanQRCodeActivity::class.java))
+        }
+
         buttonCreate.setOnClickListener{
 //            Cek username dan password
             if (createUsername.text.toString().isNotEmpty() &&
