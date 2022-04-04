@@ -12,6 +12,9 @@ import com.example.pencatatanuser.Model.SubmitModel
 import com.example.pencatatanuser.Adapter.UserAdapter
 import com.example.pencatatanuser.Model.UserModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,7 +37,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        getUser()
+//        getUser() taruh di background threat
+        GlobalScope.launch(Dispatchers.IO) {
+            getUser()
+        }
     }
 
     private fun setupView() {
@@ -91,8 +97,11 @@ class MainActivity : AppCompatActivity() {
         api.user().enqueue(object : Callback<UserModel>{
             override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
                 if (response.isSuccessful){
-                    val listData = response.body()!!.data
-                    userAdapter.setData(listData)
+//                    Update UI ke UI Threat
+                    GlobalScope.launch(Dispatchers.Main){
+                        val listData = response.body()!!.data
+                        userAdapter.setData(listData)
+                    }
 //                    listData.forEach{
 //                        Log.e("MainActivity", "data ${it.username}")
 //                    }
