@@ -51,11 +51,11 @@ class CreateActivity : AppCompatActivity() {
         buttonCreate.setOnClickListener{
 //            Cek username dan password
             if (createUsername.text.toString().isNotEmpty() &&
-                createUsername.text.toString().isNotEmpty()){
+                createPassword.text.toString().isNotEmpty()){
                 Log.e("CreateActivity", createUsername.text.toString())
-                Log.e("CreateActivity", createUsername.text.toString())
+                Log.e("CreateActivity", createPassword.text.toString())
 
-                api.create(createUsername.text.toString(), createUsername.text.toString())
+                api.create(createUsername.text.toString(), createPassword.text.toString())
                     .enqueue(object : Callback<SubmitModel>{
                         override fun onResponse(
                             call: Call<SubmitModel>,
